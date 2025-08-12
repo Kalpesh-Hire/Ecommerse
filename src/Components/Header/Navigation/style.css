@@ -1,0 +1,101 @@
+.categoryPanel button {
+  text-transform: capitalize !important;
+}
+
+.nav li .submenu {
+  visibility: hidden;
+  z-index: 1000;
+}
+.nav li:hover .submenu {
+  opacity: 1 !important;
+  visibility: inherit;
+  top: 100%;
+}
+.nav li .submenu button {
+ font-weight: 400 !important;
+}
+
+.nav li .submenu li:hover button {
+ color: #ff5252 !important;
+}
+.nav li .submenu li .submenu {
+  top: 0px !important;
+  left: 100% !important;
+  opacity: 0 !important;
+}
+
+.nav li .submenu li:hover .submenu{
+  left: 100% !important;
+  opacity: 1 !important;
+}
+
+.nav li .submenu li .submenu button {
+  color: rgba(0,0,0,0.80) !important;
+}
+
+.nav li .submenu li .submenu button:hover {
+  color: #ff5252 !important;
+}
+
+
+
+
+
+
+
+
+
+/* .nav li {
+  position: relative;
+}
+
+.nav li .submenu {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 150px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.nav li:hover > .submenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav li .submenu li {
+  position: relative;
+}
+
+.nav li .submenu li .submenu {
+  top: 0;
+  left: 100%;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background: white;
+  min-width: 150px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.nav li .submenu li:hover > .submenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav li .submenu button {
+  font-weight: 400 !important;
+  text-align: left;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.nav li .submenu li:hover button {
+  color: #ff5252 !important;
+} */ 
