@@ -38,7 +38,7 @@ const ProductItem = () => {
       </div>
 
       <div className="info p-3 py-5 px-8  w-[75%]">
-        <h6 className="text-[15px]  ">
+        <h6 className="text-[13px] !font-[400]  ">
           {" "}
           <Link to="/" className="link transition-all">
             {" "}
@@ -69,7 +69,10 @@ const ProductItem = () => {
         </div>
 
         <div className="mt-3">
-          <Button className="btn-org flex gap-2"> <MdOutlineShoppingCart className="text-[20px]"/> Add to Cart</Button>
+          <Button className="btn-org flex gap-2">
+            {" "}
+            <MdOutlineShoppingCart className="text-[20px]" /> Add to Cart
+          </Button>
         </div>
       </div>
     </div>

@@ -11,36 +11,49 @@
    padding: 0;
    box-sizing: border-box;
 } */
- ::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 8px !important;
   height: 8px !important;
- }
- ::-webkit-scrollbar-thumb{
-background: #ff5252;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff5252;
+}
+::-webkit-scrollbar-track {
+  background: #ccc;
+}
 
- }
- ::-webkit-scrollbar-track{
- background: #ccc;
-
- }
-
- .btn-org{
+.btn-org {
   background: #ff5252 !important;
   color: #fff !important;
   font-weight: 500;
   font-size: 16px;
   padding: 7px 20px !important;
- }
+}
 
-  .btn-org:hover{
+.btn-org:hover {
   background: #171717 !important;
-
-  }
+}
 body {
   background-color: #f5f0f0;
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
   overflow-x: hidden;
+  color: #3e3e3e;
+}
+
+p{
+  font-size: 14px;
+  list-style: 25;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+h1,h2,h3,h4,h5{
+  font-weight: 600;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: #ff5252 !important;
 }
 .container {
   width: 95%;
@@ -91,7 +104,7 @@ nav ul button:hover {
 /* . */
 .smallbtn .swiper-button-prev,
 .smallbtn .swiper-button-next {
-   width: 30px !important;
+  width: 30px !important;
   height: 30px !important;
   min-width: 30px !important;
   top: 55% !important;
@@ -103,8 +116,8 @@ nav ul button:hover {
   color: #000;
 }
 
-.smallbtn  .swiper-button-prev:hover,
-.smallbtn  .swiper-button-next:hover {
+.smallbtn .swiper-button-prev:hover,
+.smallbtn .swiper-button-next:hover {
   background: #ff5252 !important;
 }
 
@@ -147,33 +160,32 @@ nav ul button:hover {
   transform: scale(1.1);
 }
 
-.MuiTabs-indicator{
+.MuiTabs-indicator {
   background-color: #ff5252 !important;
 }
-.MuiTab-textColorPrimary.Mui-selected{
+.MuiTab-textColorPrimary.Mui-selected {
   color: #ff5252 !important;
 }
 
-.productSlider .swiper-wrapper{
-padding: 15px;
-margin-left: -15px;
-margin-right: -15px;
+.productSlider .swiper-wrapper {
+  padding: 15px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
-footer form input::placeholder{
+footer form input::placeholder {
   font-size: 14px !important;
 }
-.css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root.Mui-checked{
+.css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root.Mui-checked {
   color: #ff5252 !important;
-
 }
 
-.MuiFormControlLabel-label{
+.MuiFormControlLabel-label {
   font-size: 13px !important;
-  color: rgba(0,0,0,0.8) !important;
+  color: rgba(0, 0, 0, 0.8) !important;
 }
 
-.MuiCheckbox-root{
+.MuiCheckbox-root {
   padding: 6px !important;
 }
 
@@ -181,11 +193,67 @@ footer form input::placeholder{
   transition: height 500ms;
 }
 
-.ItemViewActions button.active svg{
-  color: #ff5252  !important;
+.ItemViewActions button.active svg {
+  color: #ff5252 !important;
 }
 
-.Mui-selected.MuiPaginationItem-page{
+.Mui-selected.MuiPaginationItem-page {
   background: #ff5252 !important;
-  color:#fff !important ;
+  color: #fff !important ;
+}
+/* .zoomProductSliderThumbs{
+  height: 70vh;
+  overflow: hidden;
+} */
+.zoomProductSliderThumbs .swiper-wrapper {
+  /* height: 150px !important; */
+  padding-top: 38px !important;
+}
+
+.zoomProductSliderThumbs .swiper-button-next {
+  bottom: 0px !important;
+  right: inherit !important;
+  top: inherit !important;
+  width: 100% !important;
+  height: 30px !important;
+  border-radius: 0px !important;
+}
+.zoomProductSliderThumbs .swiper-button-next:after {
+  transform: rotate(90deg);
+}
+
+.zoomProductSliderThumbs .swiper-button-prev {
+  top: 20px !important;
+  left: 0 !important;
+  /* top: inherit !important; */
+  width: 100% !important;
+  height: 30px !important;
+  border-radius: 0px !important;
+}
+.zoomProductSliderThumbs .swiper-button-prev:after {
+  transform: rotate(90deg);
+}
+
+.productContent .actions button {
+  min-width: 40px !important ;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  height: 30px !important;
+  color:  rgba(0,0,0,0.7) !important;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+
+.reviewScroll::-webkit-scrollbar{width: 5px !important;}
+.reviewScroll::-webkit-scrollbar-thumb{
+  background: #ccc !important;
+}
+.reviewScroll::-webkit-scrollbar-track {
+  background: none;
 }

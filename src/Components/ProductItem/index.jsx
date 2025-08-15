@@ -57,7 +57,7 @@ const ProductItem = () => {
           <span className="oldPrice line-through text-gray-500 text-[15px] font-[500]">
             $58.00
           </span>
-          <span className="oldPrice text-primary text-[15px] font-[600]">
+          <span className="Price text-primary text-[15px] font-[600]">
             $58.00
           </span>
         </div>
