@@ -1,8 +1,8 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { BiSupport } from "react-icons/bi";
 import { BsWallet2 } from "react-icons/bs";
-import { IoChatboxOutline } from "react-icons/io5";
+import { IoChatboxOutline, IoCloseSharp } from "react-icons/io5";
 import { LiaGiftSolid, LiaShippingFastSolid } from "react-icons/lia";
 import { PiKeyReturnLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
@@ -11,8 +11,14 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { AiOutlineYoutube } from "react-icons/ai";
-
+import Drawer from "@mui/material/Drawer";
+import { MyContext } from "../../App";
+import CartPanel from "../CartPanel";
 const Footer = () => {
+
+  const context = useContext(MyContext)
+
+  
   return (
     <>
       <footer className="py-6 bg-[#fafafa] ">
@@ -199,7 +205,7 @@ const Footer = () => {
                 <AiOutlineYoutube className="text-[18px] group-hover:text-white " />
               </Link>
             </li>
-            
+
             <li className="list-none">
               <Link
                 to=""
@@ -209,11 +215,29 @@ const Footer = () => {
                 <FaInstagram className="text-[15px] group-hover:text-white " />
               </Link>
             </li>
-                  </ul>
-                  
-              <p className="text-center text-[13px]">@2025- Kalpesh Hire</p>    
+          </ul>
+
+          <p className="text-center text-[13px]">@2025- Kalpesh Hire</p>
         </div>
       </div>
+
+      {/* Cart Panel */}
+      <Drawer
+        open={context.openCartPanel}
+        anchor={"right"}
+        onClose={() => context.toggleCartPanel(false)}
+        className="cartPanel overflow-hidden"
+      >
+        <div className="flex items-center justify-between py-3 px-4 gap-3 border-b border-[rgba(0,0,0,0.1)] overflow-hidden ">
+          <h4>Shopping Cart (1)</h4>
+          <IoCloseSharp
+            className="text-[20px] cursor-pointer"
+            onClick={context.toggleCartPanel(false)}
+          />
+        </div>
+
+        <CartPanel />
+      </Drawer>
     </>
   );
 };

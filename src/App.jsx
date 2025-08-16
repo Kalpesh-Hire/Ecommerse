@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import Header from "./Components/Header";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import ProductListing from "./Pages/ProductListing";
 import Footer from "./Components/Footer";
@@ -18,20 +18,30 @@ import { IoCloseSharp } from "react-icons/io5";
 import ProductDetailsComponent from "./Components/ProductDetails";
 import Login from "./Pages/Login";
 import Register from "./Pages/Regester";
+
 const MyContext = createContext();
 
 function App() {
   const [openProductDetailModal, setOpenProductDetailModal] = useState(false);
   const [maxWidth, setMaxWidth] = useState("lg");
   const [fullWidth, setFullWidth] = useState(true);
-  const handleClickOpenProductDetailModal = () => {
-    setOpenProductDetailModal(true);
-  };
+
+  const [openCartPanel, setOpenCartPanel] = useState(false);
 
   const handleCloseProductDetailModal = () => {
     setOpenProductDetailModal(false);
   };
-  const values = { setOpenProductDetailModal };
+
+  const toggleCartPanel = (newOpen) => () => {
+    setOpenCartPanel(newOpen);
+  };
+
+  const values = {
+    setOpenProductDetailModal,
+    setOpenCartPanel,
+    openCartPanel,
+    toggleCartPanel,
+  };
   return (
     <>
       <BrowserRouter>
@@ -82,9 +92,11 @@ function App() {
           </div>
         </DialogContent>
       </Dialog>
+
+      
     </>
   );
 }
 
 export default App;
- export { MyContext };
+export { MyContext };

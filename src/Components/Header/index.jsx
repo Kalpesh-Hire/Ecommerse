@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Links } from "react-router-dom";
 import Search from "../Search";
 import IconButton from "@mui/material/IconButton";
@@ -8,9 +8,10 @@ import { IoGitCompare } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import Tooltip from "@mui/material/Tooltip";
 import Navigation from "./Navigation";
+import { MyContext } from "../../App";
 function Header() {
 
-   
+   const context = useContext(MyContext)
       function notificationsLabel(count) {
         if (count === 0) {
           return "no notifications";
@@ -110,7 +111,10 @@ function Header() {
 
               <li className="list-none">
                 <Tooltip title="Cart">
-                  <IconButton aria-label={notificationsLabel(100)}>
+                  <IconButton
+                    aria-label={notificationsLabel(100)}
+                    onClick={()=>context.setOpenCartPanel(true)}
+                  >
                     <Badge badgeContent={100} color="secondary">
                       <MdOutlineShoppingCart />
                     </Badge>
