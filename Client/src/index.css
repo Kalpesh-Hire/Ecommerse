@@ -22,6 +22,12 @@
   background: #ccc;
 }
 
+.overflow-x-auto::-webkit-scrollbar-thumb{
+  background: #ccc;
+}
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: none;
+}
 .btn-org {
   background: #ff5252 !important;
   color: #fff !important;
