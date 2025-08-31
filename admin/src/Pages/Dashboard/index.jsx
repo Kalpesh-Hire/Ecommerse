@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, PureComponent } from "react";
 import DashboardBoxes from "../../Components/DashboardBoxes";
 import Button from "@mui/material/Button";
 import { FaPlus, FaRegEye } from "react-icons/fa";
@@ -10,13 +10,108 @@ import { Link } from "react-router-dom";
 import Progress from "../../Components/ProgressBar";
 import { AiOutlineEdit } from "react-icons/ai";
 import { GoTrash } from "react-icons/go";
-import Tooltip from "@mui/material/Tooltip";
+import TooltipMUI from "@mui/material/Tooltip";
 import Pagination from "@mui/material/Pagination";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import { BiExport } from "react-icons/bi";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Dashboard = () => {
   const [isOpenOrderProduct, setIsOpenOrderProduct] = useState(null);
+
+  const [categoryFilterVal, setcategoryFilterVal] = useState("");
+
+ const [chart1Data, setChart1Data] = useState([
+   {
+     name: "JAN",
+     TotalSales: 3210,
+     TotalUsers: 1850,
+     amt: 2400,
+   },
+   {
+     name: "FEB",
+     TotalSales: 1570,
+     TotalUsers: 920,
+     amt: 2400,
+   },
+   {
+     name: "MAR",
+     TotalSales: 2890,
+     TotalUsers: 1340,
+     amt: 2400,
+   },
+   {
+     name: "APR",
+     TotalSales: 4320,
+     TotalUsers: 2100,
+     amt: 2400,
+   },
+   {
+     name: "MAY",
+     TotalSales: 3780,
+     TotalUsers: 2750,
+     amt: 2400,
+   },
+   {
+     name: "JUN",
+     TotalSales: 1980,
+     TotalUsers: 1620,
+     amt: 2400,
+   },
+   {
+     name: "JUL",
+     TotalSales: 4500,
+     TotalUsers: 2400,
+     amt: 2400,
+   },
+   {
+     name: "AUG",
+     TotalSales: 2750,
+     TotalUsers: 1950,
+     amt: 2400,
+   },
+   {
+     name: "SEP",
+     TotalSales: 3100,
+     TotalUsers: 2200,
+     amt: 2400,
+   },
+   {
+     name: "OCT",
+     TotalSales: 2300,
+     TotalUsers: 1780,
+     amt: 2400,
+   },
+   {
+     name: "NOV",
+     TotalSales: 3400,
+     TotalUsers: 2050,
+     amt: 2400,
+   },
+   {
+     name: "DEC",
+     TotalSales: 3900,
+     TotalUsers: 2500,
+     amt: 2400,
+   },
+ ]);
+
+
+  const handleChangeCatFilter = (event) => {
+    setcategoryFilterVal(event.target.value);
+  };
 
   const isShowOrderProduct = (index) => {
     if (isOpenOrderProduct === index) {
@@ -48,9 +143,38 @@ const Dashboard = () => {
       <DashboardBoxes />
 
       <div className="card my-4  shadow-md sm:rounded-lg bg-white">
-        <div className="flex items-center justify-between px-3 py-5">
+        <div className="flex items-center justify-between px-5 py-5">
           <h2 className="text-[18px] font-[600]">Products</h2>
         </div>
+        <div className="flex items-center w-full pl-5 justify-between pr-5">
+          <div className="col w-[20%]">
+            <h4 className="font-[600] text-[13px]  mb-2">Category by</h4>
+            <Select
+              className="w-full"
+              labelId="demo-simple-select-filled-label"
+              id="demo-simple-select-filled"
+              value={categoryFilterVal}
+              onChange={handleChangeCatFilter}
+              label="Category"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Men</MenuItem>
+              <MenuItem value={20}>Women</MenuItem>
+              <MenuItem value={30}>Kids</MenuItem>
+            </Select>
+          </div>
+
+          <div className="col w-[25%] ml-auto flex items-center gap-3">
+            <Button className="btn !bg-green-600 !text-white btn-sm flex items-center">
+              {" "}
+              Export
+            </Button>
+            <Button className="btn-blue !text-white btn-sm">Add Product</Button>
+          </div>
+        </div>
+
         <div className="relative overflow-x-auto mt-5 ">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="!text-xs text-gray-700 !uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -133,21 +257,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -202,21 +326,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -271,21 +395,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -340,21 +464,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -409,21 +533,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -478,21 +602,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -547,21 +671,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -616,21 +740,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -685,21 +809,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -754,21 +878,21 @@ const Dashboard = () => {
                 </td>
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
-                    <Tooltip title="Edit Product" placement="top">
+                    <TooltipMUI title="Edit Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="View Product Details" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="View Product Details" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
-                    <Tooltip title="Remove Product" placement="top">
+                    </TooltipMUI>
+                    <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
-                    </Tooltip>
+                    </TooltipMUI>
                   </div>
                 </td>
               </tr>
@@ -1117,6 +1241,48 @@ const Dashboard = () => {
             </tbody>
           </table>
         </div>
+      </div>
+
+      <div className="card my-4  shadow-md sm:rounded-lg bg-white">
+        <div className="flex items-center justify-between px-5 py-5">
+          <h2 className="text-[18px] font-[600]">Total Users & Total Sales</h2>
+        </div>
+
+        <div className="flex items-center gap-5 px-5 py-5 pt-1">
+          <span className="flex items-center gap-1 text-[15px]">
+            <span className="block w-[8px] h-[8px] rounded-full bg-green-600"></span>
+            Total Users
+          </span>
+          <span className="flex items-center gap-1 text-[15px]">
+            <span className="block w-[8px] h-[8px] rounded-full bg-primary"></span>
+            Total Sales
+          </span>
+        </div>
+        <LineChart
+          width={1000}
+          height={500}
+          data={chart1Data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke="none" />
+          <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+          <YAxis tick={{ fontSize: 12 }} />
+          <Tooltip />
+          <Legend />
+          <Line
+            type="monotone"
+            dataKey="TotalSales"
+            stroke="#8884d8"
+            strokeWidth={2}
+            activeDot={{ r: 8 }}
+          />
+          <Line type="monotone" dataKey="TotalUsers" strokeWidth={2} stroke="#82ca9d" />
+        </LineChart>
       </div>
     </>
   );

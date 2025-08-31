@@ -6,22 +6,36 @@ body {
   background: #ff5252 !important;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 10px !important;
   height: 10px !important;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: #ccc !important;
 }
 .ReactCollapse--collapse {
   transition: height 300ms;
 }
+.btn {
+  padding: 8px 20px !important;
+}
+.btn svg {
+  font-size: 22px !important;
+}
 
-.btn-blue{
+.btn-blue {
   background: #3872fa !important;
   color: #fff !important;
   padding: 8px 20px !important;
 }
-.btn-blue:hover{
+.btn-sm {
+  padding: 6px 20px !important;
+  font-size: 13px !important;
+}
+.btn-blue:hover {
   background: #3067e5 !important;
+}
+
+a.active button{
+  background: #e3e3e3 !important;
 }
