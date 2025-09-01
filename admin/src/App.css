@@ -32,6 +32,10 @@ body {
   padding: 6px 20px !important;
   font-size: 13px !important;
 }
+.btn-lg {
+  padding: 6px 20px !important;
+  font-size: 16px !important;
+}
 .btn-blue:hover {
   background: #3067e5 !important;
 }
@@ -39,3 +43,7 @@ body {
 a.active button{
   background: #e3e3e3 !important;
 }
+
+ .MuiButton-icon svg{
+  font-size: 30px !important;
+ }

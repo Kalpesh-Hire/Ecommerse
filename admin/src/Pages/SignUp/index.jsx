@@ -9,7 +9,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
 // import LoadingButton from "@mui/material/LoadingButton"
-const Login = () => {
+const SignUp = () => {
   const [loadingGoogle, setLoadingGoogle] = useState(false);
   const [loadingfb, setLoadingfb] = useState(false);
 
@@ -52,8 +52,9 @@ const Login = () => {
           <img src="/logo.png" alt="" className="m-auto h-30 w-30" />
         </div>
         <h1 className="text-center text-[35px] !font-[800] mt-4">
-          Welcome Back! <br />
-          Sign in with your credentials.
+          Join us today! Get special
+          <br />
+          benefits and stay up-to-date
         </h1>
 
         <div className="flex items-center justify-center w-full mt-5 gap-5">
@@ -92,6 +93,15 @@ const Login = () => {
 
         <br />
         <form action="" className="w-full px-8 mt-3">
+          <div className="form-group mb-4 w-full">
+            <h4 className="text-[14px] font-[500] mb-1">Full Name</h4>
+            <input
+              type="text"
+              className="w-full h-[50px] border-2 border-[rgba(0,0,0,0.2)] rounded-md focus:border-[rgba(0,0,0,0.8)] focus:outline-none px-3 "
+              name=""
+              id=""
+            />
+          </div>
           <div className="form-group mb-4 w-full">
             <h4 className="text-[14px] font-[500] mb-1">Email</h4>
             <input
@@ -146,4 +156,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
