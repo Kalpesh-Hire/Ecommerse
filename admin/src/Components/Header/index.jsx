@@ -34,13 +34,13 @@ const Header = () => {
   return (
     <header
       className={`w-full h-[auto] py-2 pr-7 ${
-        context.isSidebarOpen === true ? "pl-[18rem]" : "pl-5"
+        context.isSidebarOpen === true ? "pl-[16rem]" : "pl-5"
       } bg-[#fff] shadow-md flex items-center justify-between `}
     >
       <div className="part1">
         <Button
           onClick={() => context.setIsSidebarOpen(!context.isSidebarOpen)}
-          className="!w-[40px] !h-[40px] !rounded-full !min-w-[40px] !text-[rgba(0,0,0,0.8)]"
+          className="!w-[40px] !h-[40px] !rounded-full !min-w-[40px] !text-[rgba(0,0,0,0.8)] z-50 relative"
         >
           {" "}
           <RiMenu2Line className="text-[18px] text-[rgba(0,0,0,0.8)]" />{" "}

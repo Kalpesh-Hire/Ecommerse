@@ -1,4 +1,4 @@
-import React, { useState, PureComponent } from "react";
+import React, { useState, PureComponent, useContext } from "react";
 import DashboardBoxes from "../../Components/DashboardBoxes";
 import Button from "@mui/material/Button";
 import { FaPlus, FaRegEye } from "react-icons/fa";
@@ -25,10 +25,13 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { MyContext } from "../../App";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Dashboard = () => {
+
+  const context = useContext(MyContext)
   const [isOpenOrderProduct, setIsOpenOrderProduct] = useState(null);
 
   const [categoryFilterVal, setcategoryFilterVal] = useState("");
@@ -132,7 +135,15 @@ const Dashboard = () => {
             Here's What happening on your store today. See statistics at once
           </p>
           <br />
-          <Button className="btn-blue !capitalize">
+          <Button
+            onClick={() =>
+              context.setIsOpenFullScreenPanel({
+                open: true,
+                model: "Add Products",
+              })
+            }
+            className="btn-blue !capitalize"
+          >
             {" "}
             <FaPlus /> Add Product
           </Button>
@@ -171,7 +182,17 @@ const Dashboard = () => {
               {" "}
               Export
             </Button>
-            <Button className="btn-blue !text-white btn-sm">Add Product</Button>
+            <Button
+              onClick={() =>
+                context.setIsOpenFullScreenPanel({
+                  open: true,
+                  model: "Add Products",
+                })
+              }
+              className="btn-blue !text-white btn-sm"
+            >
+              Add Product
+            </Button>
           </div>
         </div>
 
@@ -1281,7 +1302,12 @@ const Dashboard = () => {
             strokeWidth={2}
             activeDot={{ r: 8 }}
           />
-          <Line type="monotone" dataKey="TotalUsers" strokeWidth={2} stroke="#82ca9d" />
+          <Line
+            type="monotone"
+            dataKey="TotalUsers"
+            strokeWidth={2}
+            stroke="#82ca9d"
+          />
         </LineChart>
       </div>
     </>

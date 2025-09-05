@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { FaAngleDown, FaRegImage } from "react-icons/fa";
@@ -9,7 +9,10 @@ import { TbCategory } from "react-icons/tb";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { IoMdLogOut } from "react-icons/io";
 import { Collapse } from "react-collapse";
+import { MyContext } from "../../App";
 const Sidebar = () => {
+const context = useContext(MyContext)
+
   const [submenuIndex, setSubmenuIndex] = useState(null);
   const isOpenSubMenu = (index) => {
     if (submenuIndex === index) {
@@ -20,7 +23,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="sidebar w-full h-full bg-[#fff] border-r border-[rgba(0,0,0,0.1)] py-2 px-4">
+    <div className="sidebar fixed top-0 left-0 bg-[#fff] h-full border-r border-[rgba(0,0,0,0.1)] py-2 px-4 ">
       <div className="py-2 w-full">
         <Link to="/">
           <img src="/eclogo2.png" className="w-[120px]" alt="" />
@@ -54,13 +57,23 @@ const Sidebar = () => {
           <Collapse isOpened={submenuIndex === 1 ? true : false}>
             <ul className="w-full">
               <li className="w-full">
-                <Button className="!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[13px] !font-[500] !pl-9 flex gap-3">
-                  <span className="block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)]"></span>{" "}
-                  Home Banners List
-                </Button>
+                <Link to="/homeSlider/list">
+                  <Button className="!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[13px] !font-[500] !pl-9 flex gap-3">
+                    <span className="block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)]"></span>{" "}
+                    Home Banners List
+                  </Button>
+                </Link>
               </li>
               <li className="w-full">
-                <Button className="!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[13px] !font-[500] !pl-9 flex gap-3">
+                <Button
+                  onClick={() =>
+                    context.setIsOpenFullScreenPanel({
+                      open: true,
+                      model: "Add Home Slide",
+                    })
+                  }
+                  className="!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[13px] !font-[500] !pl-9 flex gap-3"
+                >
                   <span className="block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)]"></span>{" "}
                   Add Home Banner Slide
                 </Button>
@@ -102,12 +115,18 @@ const Sidebar = () => {
                 </Link>
               </li>
               <li className="w-full">
-                <Link to="/product/upload">
-                  <Button className="!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[13px] !font-[500] !pl-9 flex gap-3">
-                    <span className="block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)]"></span>{" "}
-                    Products Upload
-                  </Button>
-                </Link>
+                <Button
+                  onClick={() =>
+                    context.setIsOpenFullScreenPanel({
+                      open: true,
+                      model: "Add Products",
+                    })
+                  }
+                  className="!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[13px] !font-[500] !pl-9 flex gap-3"
+                >
+                  <span className="block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)]"></span>{" "}
+                  Products Upload
+                </Button>
               </li>
             </ul>
           </Collapse>
@@ -130,7 +149,7 @@ const Sidebar = () => {
           <Collapse isOpened={submenuIndex === 4 ? true : false}>
             <ul className="w-full">
               <li className="w-full">
-                <Link to="/categories">
+                <Link to="/category/list">
                   <Button className="!text-[rgba(0,0,0,0.8)] !capitalize !justify-start !w-full !text-[13px] !font-[500] !pl-9 flex gap-3">
                     <span className="block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)]"></span>{" "}
                     Category List
