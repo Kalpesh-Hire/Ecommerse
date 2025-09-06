@@ -16,9 +16,10 @@ import { FaPlus, FaRegEye } from "react-icons/fa";
 import SearchBox from "../../Components/SearchBox";
 import { MyContext } from "../../App";
 import shoppingBaslet from "/shopping-basket.png";
+import Chip from "@mui/material/Chip";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const CategoryList = () => {
+const SubCategoryList = () => {
   const [categoryFilterVal, setcategoryFilterVal] = useState("");
   const handleChangeCatFilter = (event) => {
     setcategoryFilterVal(event.target.value);
@@ -28,9 +29,9 @@ const CategoryList = () => {
   return (
     <>
       <div className="flex items-center justify-between px-5 py-0 mt-3">
-        <h2 className="text-[18px] font-[600]">Category List</h2>
+        <h2 className="text-[18px] font-[600]">Sub Category List</h2>
 
-        <div className="col w-[25%] ml-auto flex items-center justify-end gap-3">
+        <div className="col w-[30%] ml-auto flex items-center justify-end gap-3">
           <Button className="btn !bg-green-600 !text-white btn-sm">
             {" "}
             Export
@@ -40,11 +41,11 @@ const CategoryList = () => {
             onClick={() =>
               context.setIsOpenFullScreenPanel({
                 open: true,
-                model: "Add New Category",
+                model: "Add New Sub Category",
               })
             }
           >
-            Add New Category
+            Add New SubCategory
           </Button>
         </div>
       </div>
@@ -60,10 +61,13 @@ const CategoryList = () => {
                   </div>
                 </th>
                 <th scope="col" className="px-0 py-3 whitespace-nowrap">
-                  Image
+                  Category Image
                 </th>
                 <th scope="col" className="px-0 py-3 whitespace-nowrap">
                   Category Name
+                </th>
+                <th scope="col" className="px-0 py-3 whitespace-nowrap">
+                  Sub Category Name
                 </th>
 
                 <th scope="col" className="px-6 py-3 whitespace-nowrap">
@@ -92,8 +96,17 @@ const CategoryList = () => {
                   </div>
                 </td>
                 <td className="px-6 pr-0 py-2">
-                  Fashion
-</td>
+                  <div className="flex items-center gap-4">
+                    <Chip label="Fashion" />
+                  </div>
+                </td>
+                <td className="px-6 pr-0 py-2">
+                  <div className="flex items-center gap-4">
+                    <Chip label="Men" color="primary" />
+                    <Chip label="Women" color="primary" />
+                    <Chip label="Kids" color="primary" />
+                  </div>
+                </td>
 
                 <td className="px-6 py-2">
                   <div className="flex items-center gap-4">
@@ -102,11 +115,7 @@ const CategoryList = () => {
                         <AiOutlineEdit className="text-[rgba(0,0,0,0.7)] text-[18px]" />
                       </Button>
                     </TooltipMUI>
-                    <TooltipMUI title="View Product Details" placement="top">
-                      <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
-                        <FaRegEye className="text-[rgba(0,0,0,0.7)] text-[18px]" />
-                      </Button>
-                    </TooltipMUI>
+                   
                     <TooltipMUI title="Remove Product" placement="top">
                       <Button className="!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1] !border !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#f1f1f1] ">
                         <GoTrash className="text-[rgba(0,0,0,0.7)] text-[18px]" />
@@ -127,4 +136,4 @@ const CategoryList = () => {
   );
 };
 
-export default CategoryList;
+export default SubCategoryList;

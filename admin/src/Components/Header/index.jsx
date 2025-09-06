@@ -133,7 +133,9 @@ const Header = () => {
             </Menu>
           </div>
         ) : (
-          <Button className="btn-blue btn-sm !rounded-full">Sign In</Button>
+          <Link to="/login">
+            <Button className="btn-blue btn-sm !rounded-full">Sign In</Button>
+          </Link>
         )}
       </div>
     </header>

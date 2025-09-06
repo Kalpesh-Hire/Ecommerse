@@ -24,6 +24,14 @@ import Button from "@mui/material/Button";
 import HomeSliderBanner from "./Pages/HomeSliderBanners.jsx";
 import AddHomeSlide from "./Pages/HomeSliderBanners.jsx/addHomeSlide.jsx";
 import CategoryList from "./Pages/Category/index.jsx";
+import AddCategory from "./Pages/Category/addCategory.jsx";
+import SubCategoryList from "./Pages/Category/subCatList.jsx";
+import AddSubCategory from "./Pages/Category/addSubCategory.jsx";
+import Users from "./Pages/Users/index.jsx";
+import Orders from "./Pages/Orders/index.jsx";
+import ForgotPassword from "./Pages/forgotPassword/index.jsx";
+import VerifyAccount from "./Pages/Verify/index.jsx";
+import ChangePassword from "./Pages/ChangePassowrd/index.jsx";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -73,6 +81,36 @@ function App() {
       element: (
         <>
           <Login />
+          {/* <Dashboard /> */}
+        </>
+      ),
+    },
+    {
+      path: "/forgot-password",
+      exact: true,
+      element: (
+        <>
+          <ForgotPassword />
+          {/* <Dashboard /> */}
+        </>
+      ),
+    },
+    {
+      path: "/verify",
+      exact: true,
+      element: (
+        <>
+          <VerifyAccount />
+          {/* <Dashboard /> */}
+        </>
+      ),
+    },
+    {
+      path: "/change-password",
+      exact: true,
+      element: (
+        <>
+          <ChangePassword />
           {/* <Dashboard /> */}
         </>
       ),
@@ -172,6 +210,91 @@ function App() {
         </>
       ),
     },
+
+    {
+      path: "/subcategory/list",
+      exact: true,
+      element: (
+        <>
+          <section className="main">
+            <Header />
+            <div className="contentMain flex">
+              <div
+                className={` overflow-hidden sidebarWrapper ${
+                  isSidebarOpen === true ? "w-[18%]" : "w-[0px] opacity-0"
+                } transition-all `}
+              >
+                <Sidebar />
+              </div>
+              <div
+                className={`contentRight py-4 px-5 ${
+                  isSidebarOpen === false ? "w-[100%]" : "w-[82%]"
+                } transition-all `}
+              >
+                <SubCategoryList />
+              </div>
+            </div>
+          </section>
+          {/* <Dashboard /> */}
+        </>
+      ),
+    },
+    {
+      path: "/users",
+      exact: true,
+      element: (
+        <>
+          <section className="main">
+            <Header />
+            <div className="contentMain flex">
+              <div
+                className={` overflow-hidden sidebarWrapper ${
+                  isSidebarOpen === true ? "w-[18%]" : "w-[0px] opacity-0"
+                } transition-all `}
+              >
+                <Sidebar />
+              </div>
+              <div
+                className={`contentRight py-4 px-5 ${
+                  isSidebarOpen === false ? "w-[100%]" : "w-[82%]"
+                } transition-all `}
+              >
+                <Users />
+              </div>
+            </div>
+          </section>
+          {/* <Dashboard /> */}
+        </>
+      ),
+    },
+    {
+      path: "/orders",
+      exact: true,
+      element: (
+        <>
+          <section className="main">
+            <Header />
+            <div className="contentMain flex">
+              <div
+                className={` overflow-hidden sidebarWrapper ${
+                  isSidebarOpen === true ? "w-[18%]" : "w-[0px] opacity-0"
+                } transition-all `}
+              >
+                <Sidebar />
+              </div>
+              <div
+                className={`contentRight py-4 px-5 ${
+                  isSidebarOpen === false ? "w-[100%]" : "w-[82%]"
+                } transition-all `}
+              >
+                <Orders />
+              </div>
+            </div>
+          </section>
+          {/* <Dashboard /> */}
+        </>
+      ),
+    },
   ]);
 
   const values = {
@@ -222,6 +345,12 @@ function App() {
           </AppBar>
           {isOpenFullScreenPanel.model === "Add Products" && <AddProducts />}
           {isOpenFullScreenPanel.model === "Add Home Slide" && <AddHomeSlide />}
+          {isOpenFullScreenPanel.model === "Add New Category" && (
+            <AddCategory />
+          )}
+          {isOpenFullScreenPanel.model === "Add New Sub Category" && (
+            <AddSubCategory />
+          )}
         </Dialog>
       </MyContext.Provider>
     </>
